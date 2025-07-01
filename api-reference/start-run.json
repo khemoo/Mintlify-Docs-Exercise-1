@@ -46,16 +46,57 @@
                   "integrationName": {
                     "type": "string",
                     "example": "CircleCI",
-                    "default": "MCP",
-                    "description": "Human readable name of what triggered this test, can be the name of the CI/CD tool. Use MCP if called from a MCP server."
+                    "default": "API",
+                    "description": "Human readable name of what triggered this test, can be the name of the CI/CD tool. Defaults to 'API' if not provided."
                   },
                   "testPlanShortId": {
                     "type": "string",
                     "example": "abc123",
                     "description": "The short ID of the test plan to run"
+                  },
+                  "applications": {
+                    "type": "object",
+                    "description": "Optional application environment overrides",
+                    "additionalProperties": {
+                      "type": "object",
+                      "properties": {
+                        "environment": {
+                          "type": "object",
+                          "properties": {
+                            "url": {
+                              "type": "string",
+                              "example": "https://preview-123.vercel.app",
+                              "description": "The URL of the environment to test against"
+                            },
+                            "name": {
+                              "type": "string",
+                              "example": "Preview Environment",
+                              "description": "Human readable name for the environment"
+                            }
+                          },
+                          "required": ["url"],
+                          "description": "Environment configuration for the application"
+                        }
+                      },
+                      "required": ["environment"]
+                    },
+                    "example": {
+                      "app-short-id-1": {
+                        "environment": {
+                          "url": "https://preview-123-frontend.vercel.app",
+                          "name": "PR-123-Frontend"
+                        }
+                      },
+                      "app-short-id-2": {
+                        "environment": {
+                          "url": "https://preview-123-backend.vercel.app",
+                          "name": "PR-123-Backend"
+                        }
+                      }
+                    }
                   }
                 },
-                "required": ["integrationName", "testPlanShortId"]
+                "required": ["testPlanShortId"]
               }
             }
           }
