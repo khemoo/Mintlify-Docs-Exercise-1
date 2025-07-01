@@ -1,0 +1,39 @@
+---
+title: 'IP Access'
+description: 'Configure your ingress'
+icon: 'globe'
+---
+
+## Whitelisting
+
+To permit traffic originating from QA.tech you need to add our IP addresses to your firewall rules. This process is called whitelisting, and is usually done by your security team.
+
+## QA.tech IP range
+
+The current list of IPs that you need to whitelist can be found logged in to [QA.tech](https://app.qa.tech) under Configuration - Network.
+
+Or by accessing https://app.qa.tech/api/outbound-ips
+
+## Whitelisting IPs on Cloudflare to Avoid Captcha
+
+When using Cloudflare with your application, you may encounter captcha challenges for your automated tests or agents. To prevent this, you can whitelist our agent IPs on Cloudflare.
+
+### Creating a WAF Rule for IP Whitelisting
+
+You can create a WAF (Web Application Firewall) rule to whitelist specific IPs:
+
+1. Log in to your Cloudflare dashboard
+2. Navigate to the Security section
+3. Select WAF > Tools > IP Access Rules
+4. Add the agent IPs to the allowlist
+
+For more details, see the [Cloudflare documentation on IP Access Rules](https://developers.cloudflare.com/waf/tools/ip-access-rules/).
+
+### Finding Agent IPs
+
+You can always find the current agent IPs in the application:
+
+1. Go to Settings > Network in the app
+2. Copy the listed IP addresses to use in your Cloudflare WAF rules
+
+Whitelisting these IPs will ensure your automated processes can interact with your application without being blocked by captcha challenges.

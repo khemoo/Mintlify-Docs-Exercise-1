@@ -1,0 +1,42 @@
+---
+title: Envoyer
+description: 'Trigger your test from a GitHub repo'
+icon: 'php'
+---
+
+## Envoyer
+
+Envoyer is a zero-downtime PHP deployment tool created by the makers of Laravel. It allows you to deploy PHP and Laravel applications without downtime, supporting integrations with GitHub, Bitbucket, GitLab, Slack, and other services. Features include seamless deployment rollbacks, application health checks, cron job monitoring, and deployment to multiple servers. It offers various plans starting at $10 per month, allowing unlimited team members and projects depending on the tier.
+
+## Envoyer Integration
+
+Connecting QA.tech to your Envoyer setup is simple. Follow these steps.
+
+<Steps>
+    <Step title="Navigate to Deployment Hooks">
+
+Inside Envoyer, find your project and navigate to the section Deployment Hooks, and press "Add Hook"
+
+<img src="/images/envoyer1.png" alt="Deployment Hook page" />
+
+</Step>
+<Step title="Add the hook">
+
+Fill in the modal with the following values:
+
+Name: `Trigger QA.tech Tests`
+
+Script: Fetch this script from QA.tech
+The script are found in Congiguration / Integration at QA.tech
+
+<img src="/images/envoyer2.png" alt="Add Hook Modal" />
+
+</Step>
+<Step title="Verify that the hook was added">
+
+It should show up in the list of hooks
+
+<img src="/images/envoyer3.png" alt="Verify that Hook is added" />
+
+</Step>
+</Steps>

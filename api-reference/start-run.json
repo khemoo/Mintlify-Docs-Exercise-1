@@ -1,0 +1,111 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "QA.tech API",
+    "description": "API for managing project runs",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://app.qa.tech/api"
+    }
+  ],
+  "paths": {
+    "/projects/{projectId}/runs": {
+      "post": {
+        "summary": "Start the tests",
+        "description": "This endpoint triggers a new test run for the specified project.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the project"
+          },
+          {
+            "in": "header",
+            "name": "Content-Type",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            },
+            "description": "The media type of the request body. Should be set to application/json"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "integrationName": {
+                    "type": "string",
+                    "example": "CircleCI",
+                    "default": "MCP",
+                    "description": "Human readable name of what triggered this test, can be the name of the CI/CD tool. Use MCP if called from a MCP server."
+                  },
+                  "testPlanShortId": {
+                    "type": "string",
+                    "example": "abc123",
+                    "description": "The short ID of the test plan to run"
+                  }
+                },
+                "required": ["integrationName", "testPlanShortId"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successfully created run",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "runId": {
+                      "type": "string",
+                      "example": "abc123"
+                    },
+                    "status": {
+                      "type": "string",
+                      "example": "created"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Project not found"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}

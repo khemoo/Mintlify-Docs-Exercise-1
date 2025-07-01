@@ -1,0 +1,37 @@
+---
+title: Tests and Results
+description: Scenarios are groups of test cases that belong together
+icon: 'bars'
+---
+
+## Scenarios
+
+Scenarios are groups of test cases that belong together. They are best organized around user flows, such as:
+
+- Login
+- Product Search
+- Add to shopping cart
+- Checkout
+- Notification Settings
+
+Each scenario should optimally include both positive and negative test cases. For example, a "Checkout Process" scenario might include:
+
+- Successful purchase with valid payment details
+- Order completion with fedex shipping
+- Payment attempt with expired credit card (negative case)
+- Checkout with empty cart (negative case)
+
+This structure helps ensure comprehensive testing of each user flow, including both expected successes and potential failure points.
+
+### Negative Testing
+
+Negative testing is a QA practice that validates how a system handles invalid inputs, unexpected user behavior, and error conditions. Think of it as "testing what shouldn't work" to ensure the application fails gracefully and securely.
+
+- Validating error messages
+- Ensuring system stability under incorrect usage
+- Preventing security vulnerabilities
+- Maintaining data integrity
+
+## Tests and Test Runs
+
+Every time a test run is triggered, we run the selected scenarios. The result is a test run with one or more test cases in it.

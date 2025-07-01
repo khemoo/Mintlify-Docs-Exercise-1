@@ -1,0 +1,55 @@
+---
+title: AI Agent Testing
+description: 'An into to AI agents, and how they are used for QA'
+icon: user-secret
+---
+
+AI agents are autonomous software entities that perform tasks or make decisions based on input data, using artificial intelligence techniques. They can learn, adapt, and operate without constant human intervention.
+
+They can handle complex tasks in various domains by learning from their experiences. For example: AI agents can serve as virtual assistants, help power autonomous vehicles, and support recommendation systems
+
+## What is AI agent testing
+
+It’s testing, but using AI agents instead of humans or scripts to complete the tasks.
+
+**What are the benefits of AI agent testing?**
+
+**Flexibility**
+
+AI agents can handle more open-ended instructions compared to a traditional script-based automation tool. An agent can take an instruction such as “fill out a form with values that make sense”, and produce great results while using a script or automation tool would require complex setups for each field you want to fill in.
+
+**More human-like behavior**
+
+Agents can be primed to use different approaches every time – making them perfect for testing systems with multiple permutations of a user flow.
+
+For example: Testing an e-commerce application, the agent could add a different mix of items to the cart each time, and check out with different addresses, behaving much more like a normal end user – making it great at finding bugs in edge cases
+
+**Fast**
+
+While not as fast as optimized code (….yet), AI agents are able to operate faster than their human counterparts. Being available 24/7 and never getting bored, they excel at being thorough even for highly repetitive testing tasks.
+
+**What are AI agents bad at**
+
+**Very deterministic tests**
+
+Do you have a large set of actions that need to be done in the exact same order, every time? Then scripted tests are great. Use AI agent testing to test the less predictable user flows, as a complement to the scripted user journeys.
+
+**Math**
+If you need to do complex calculations and financial operations, stick with deterministic calculations in code! AI can sanity check things but does not have good mathematical skills at this time.
+
+**Tests that require privileged access**
+
+If your test relies on changing state in a database, an API, or something else not accessible through the web, you need to do a specific setup for that.
+
+## QA.tech's different agents
+
+**Latest**
+This will use the currently best agent at QA.tech's disposal. This is the best choice for most cases and is the default when creating tests.
+
+**Computer Use**
+Current default agent. This agent is designed to be able to use a computer more like a human would. It relies 90% on screenshots of the page and moves the mouse, clicks elements, uses the keyboard, and more. This is currently under development and bleeding edge. You can try with this agent if the standard agent is not working for your test.
+
+This agent is based on the Computer Use model from Anthropic.
+
+**Legacy**
+An agent inspired by the ReAct paper. It uses a reasoning engine to make decisions and passes those down to an agent that can interact with the web. This is combined with a grounding model for understanding the web page from a visual perspective and a model for remembering the elements from previous interactions.

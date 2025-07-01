@@ -1,0 +1,15 @@
+---
+title: Troubleshooting
+description: 'What can you do to make QA.tech work as well as possible for you?'
+icon: 'triangle-exclamation'
+---
+
+## The agent doesn't understand what to click
+
+We use a combination of the DOM and visual models to decide what to click or interact with. To make it easier for our agent to understand your site, we suggest taking the following measures.
+
+1. Make your site more accessible
+   Ensure all your elements are tagged with the correct `aria`-labels, as well as `title` and `alt` attributes.
+
+2. Use semantic HTML tags
+   For example, utilize `<a>` or `<button>` element for clickable elements (as opposed to `div`s).

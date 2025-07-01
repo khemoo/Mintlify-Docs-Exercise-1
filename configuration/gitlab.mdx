@@ -1,0 +1,45 @@
+---
+title: GitLab
+description: 'Trigger your tests from a GitLab repo'
+icon: 'gitlab'
+---
+
+# Gitlab Integration
+
+Automate your QA process by integrating QA.tech with your GitLab CI/CD pipelines. You can trigger test runs automatically on stages, after deployments, on merge requests.
+
+You can trigger an external API as part of your GitLab CI/CD pipeline using a curl command inside your `.gitlab-ci.yml` file.
+
+## Example: Triggering an API with a POST Request
+
+This example demonstrates how to send a JSON payload to an external API from a pipeline job.
+
+```yaml
+trigger_qatech:
+  stage: deploy
+  variables:
+    QATECH_REQUEST_BODY: '{"integrationName": "Gitlab"}'
+    API_TOKEN: $QA_TECH_API_TOKEN # Use GitLab secret variable
+  script: >
+    curl --request POST --url "https://app.qa.tech/api/projects/<PROJECT_ID>/runs"
+    --header "Authorization: Bearer $API_TOKEN"
+    --data "${QATECH_REQUEST_BODY}"
+```
+
+### Instructions
+
+Update the URL and QA_TECH_API_TOKEN for your project.
+You can find these values in your [project settings](https://app.qa.tech/dashboard/current-project/settings/integrations).
+
+### Use a Secret Token
+
+Store your API token securely in GitLab CI/CD variables under Settings > CI/CD > Variables.
+Name it QA_TECH_API_TOKEN and use it as shown above to avoid hardcoding secrets.
+
+### Optional Fields
+
+For more information about our API and other integration options, check out our [API Reference](/api-reference/start-the-tests).
+
+## Notes
+
+Make sure the job runs in a stage that suits your pipeline (e.g., deploy, test, etc.).

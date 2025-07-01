@@ -1,0 +1,166 @@
+---
+title: Knowledge
+description: Manage project knowledge and context for better AI assistance
+icon: 'book-open'
+---
+
+QA.tech's knowledge system helps AI assistants understand your project better by providing three types of context: knowledge items, global context, and auto-generated summaries.
+
+## Knowledge Items
+
+Add documentation, links, and text content that AI assistants can reference when chatting and generating tests. This knowledge is searchable and helps provide accurate, project-specific context.
+
+### What You Can Add
+
+- **URLs**: Link to documentation sites, help pages, API docs
+- **Text Content**: Add custom instructions, project notes, or guidelines
+
+### How It's Used
+
+Knowledge items are automatically searched when:
+
+- Chatting with AI assistants about your project
+- Generating new test cases
+- Getting project-specific help and recommendations
+
+The AI uses semantic search to find relevant information from your knowledge base to provide accurate, context-aware responses.
+
+### Adding Knowledge Items
+
+<Steps>
+  <Step title="Navigate to Knowledge Settings">
+    Navigate to [**Settings →
+    Knowledge**](https://app.qa.tech/dashboard/current-project/settings/knowledge).
+  </Step>
+  <Step title="Add New Knowledge">
+    Click **"Add Knowledge"** to create a new knowledge item.
+  </Step>
+  <Step title="Choose Content Type">
+    Choose your content type (URL, or Text) based on what you want to add.
+  </Step>
+  <Step title="Fill in Details">
+    Fill in the title and content for your knowledge item.
+  </Step>
+  <Step title="Save and Process">
+    Save to process and index the content for use by AI assistants.
+  </Step>
+</Steps>
+
+## Global Context
+
+Global context gets included in the AI agent's prompt for **all tests** in your project. Use this to specify project-specific behaviors, requirements, or guidelines that help the agent perform better.
+
+### What to Include
+
+The global context should contain information that the AI agent should be aware of when executing any test:
+
+- **Service Description**: "The service is a route planning service for American railways"
+- **Data Requirements**: "When creating users, always use Swedish names"
+- **Quality Standards**: "Always fail tests when obvious typos are found"
+- **UI Guidelines**: "If a button is red, it should never be clicked"
+- **Authentication Flows**: "Login requires 2FA via SMS"
+
+### Best Practices
+
+- Keep it concise but specific
+- Focus on universal rules that apply to all tests
+- Include domain-specific terminology and behaviors
+- Mention any unusual UI patterns or interactions
+
+For detailed examples and guidelines, see [Project Context Best Practices](/best-practices/project-context).
+
+## Project Summary
+
+An AI-generated summary of your website's functionality and structure based on analysis of your pages and user interactions. This automatically provides context to help AI assistants understand your project better.
+
+### How It Works
+
+1. **Page Analysis**: QA.tech analyzes your website's structure and functionality
+2. **Graph Generation**: Creates a knowledge graph of your site's features and flows
+3. **AI Summary**: Generates a comprehensive summary using the graph data
+4. **Automatic Updates**: Refreshes as your site changes and more analysis is completed
+
+### What's Included
+
+The summary typically contains:
+
+- Overview of your platform's purpose and main functionality
+- Key features and user flows
+- Important pages and their purposes
+- Integration points and external services
+
+### Refreshing the Summary
+
+<Steps>
+  <Step title="Navigate to Knowledge Settings">
+    Navigate to [**Settings →
+    Knowledge**](https://app.qa.tech/dashboard/current-project/settings/knowledge).
+  </Step>
+  <Step title="Find Project Summary">
+    Find the **"Project Summary"** section on the page.
+  </Step>
+  <Step title="Refresh Summary">
+    Click **"Refresh"** to generate an updated summary based on your latest site
+    analysis.
+  </Step>
+</Steps>
+
+<Note>
+  The summary requires initial site analysis to be completed. If no summary
+  appears, ensure you've run some tests or site analysis first.
+</Note>
+
+## Knowledge in Chat
+
+When using QA.tech's chat feature, the AI assistants automatically:
+
+1. **Search Knowledge Items**: Find relevant documentation and custom content
+2. **Apply Global Context**: Use project-specific guidelines and requirements
+3. **Reference Summary**: Understand your site's overall structure and purpose
+
+This provides more accurate, project-specific responses when asking about:
+
+- How to test specific features
+- Best practices for your type of application
+- Troubleshooting test issues
+- Understanding test results
+
+## Knowledge in Test Generation
+
+When generating new tests, AI assistants use your knowledge to:
+
+- **Understand Requirements**: Apply global context rules and guidelines
+- **Reference Documentation**: Find relevant testing scenarios from your docs
+- **Avoid Duplicates**: Check against existing test patterns
+- **Suggest Improvements**: Recommend tests based on your documented flows
+
+## Managing Knowledge
+
+### Organization Tips
+
+- **Use Clear Titles**: Make knowledge items easy to find and understand
+- **Keep Content Current**: Regularly update documentation links
+- **Remove Outdated Info**: Delete or update knowledge that's no longer relevant
+- **Test Your Knowledge**: Ask the chat assistant questions to verify knowledge quality
+
+### Troubleshooting
+
+**Knowledge not being found in chat:**
+
+- Ensure content has been fully processed (check status indicators)
+- Try different search terms or questions
+- Verify the content is relevant to your question
+
+**Global context not being applied:**
+
+- Check that you've saved the global context settings
+- Verify the context applies to the type of test you're running
+- Review test results to see if context guidelines are being followed
+
+**Summary not generating:**
+
+- Ensure you've completed initial site analysis
+- Try running a few tests to build the knowledge graph
+- Manually refresh the summary after adding new functionality
+
+For more specific guidance on writing effective project context, see our [Project Context Best Practices](/best-practices/project-context).

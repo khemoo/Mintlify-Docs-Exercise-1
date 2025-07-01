@@ -1,0 +1,144 @@
+---
+title: 'Dialog Handling'
+description: 'How QA.tech handles browser dialogs (alerts, confirms, prompts) during automated testing'
+icon: 'message-exclamation'
+---
+
+# Dialog Handling
+
+QA.tech automatically handles browser dialogs that appear during test execution, ensuring your tests continue running smoothly without manual intervention.
+
+## Supported Dialog Types
+
+Our testing platform can capture and handle four types of browser dialogs:
+
+<Card title="Alert Dialogs" icon="triangle-exclamation">
+  **`window.alert()`** - Simple notification dialogs with just an "OK" button.
+  **Handled by default:** ✅ Yes - automatically accepted and text captured
+</Card>
+
+<Card title="Confirm Dialogs" icon="circle-question">
+  **`window.confirm()`** - Dialogs with "OK" and "Cancel" options. **Handled by
+  default:** ❌ No - can be enabled on request
+</Card>
+
+<Card title="Prompt Dialogs" icon="message-question">
+  **`window.prompt()`** - Dialogs that request text input from the user.
+  **Handled by default:** ❌ No - can be enabled on request
+</Card>
+
+<Card title="Before Unload Dialogs" icon="door-open">
+  **`window.onbeforeunload`** - Dialogs shown when leaving a page with unsaved
+  changes. **Handled by default:** ❌ No - can be enabled on request
+</Card>
+
+## Default Behavior
+
+### Alert Dialogs (Automatic)
+
+By default, QA.tech automatically:
+
+- **Captures** the alert message text
+- **Accepts** the alert (clicks "OK")
+- **Includes** the alert text in the test result
+
+When an alert appears during a test action, agent will see output like:
+
+```
+Successfully clicked submit button. Alert(s) shown: alert: Please fill in all required fields
+```
+
+### Other Dialog Types (On Request)
+
+Confirm, prompt, and beforeunload dialogs are not handled by default but can be configured if needed. Contact our support team if your application requires handling these dialog types.
+
+## Why Browser Dialogs Should Be Avoided
+
+<Warning>
+  **Avoid using `alert()`, `confirm()`, and `prompt()` dialogs in modern web
+  applications.**
+</Warning>
+
+All browser dialogs (`alert()`, `confirm()`, `prompt()`) are legacy APIs with significant limitations:
+
+- **Synchronous Blocking** - All JavaScript execution halts while a dialog is open, blocking UI updates and network requests
+- **Cannot be styled** - Appearance varies between browsers and cannot be customized to match your design system
+- **Limited functionality** - Support only basic text and buttons, no rich content or custom button labels
+- **Poor mobile experience** - May appear at OS level, breaking app visual flow and scaling inconsistently
+- **Accessibility issues** - Screen readers and assistive technologies may not announce dialogs reliably
+- **Testing complexity** - Require special handling in automation frameworks, interrupting test flows
+
+## Modern Alternatives
+
+Instead of browser dialogs, use these user-friendly patterns:
+
+<Steps>
+  <Step title="Custom Modal Components">
+    Build modals with your UI framework that match your design system, support
+    rich content, and include proper ARIA attributes for accessibility.
+  </Step>
+  <Step title="Inline Validation & Messaging">
+    Embed validation errors or status messages directly adjacent to form fields,
+    providing real-time feedback without interruption.
+  </Step>
+  <Step title="Toast & Snackbar Notifications">
+    Use non-blocking notification systems for success messages, warnings, and
+    informational alerts that don't halt user interaction.
+  </Step>
+  <Step title="Dedicated Confirmation Flows">
+    For destructive actions, use confirmation screens or inline panels that show
+    contextual details and require explicit confirmation.
+  </Step>
+</Steps>
+
+## Migration Strategy
+
+If your application currently uses browser dialogs:
+
+<Note>
+  **Gradual Replacement Approach:** 1. **Audit** - Identify all occurrences of
+  `alert`, `confirm`, `prompt` in your codebase 2. **Prioritize** - Start with
+  high-traffic, user-facing areas first 3. **Build** - Develop reusable modal
+  and notification components 4. **Replace** - Swap native dialogs
+  incrementally, verifying behavior 5. **Test** - Ensure custom components work
+  with your automated tests
+</Note>
+
+## Testing Dialog-Heavy Applications
+
+If your application currently uses browser dialogs extensively:
+
+<Note>
+  **Contact Support:** Reach out to our team at [hi@qa.tech](mailto:hi@qa.tech)
+  to discuss: - Enabling additional dialog types for your tests - Migration
+  strategies for replacing dialogs with better UX patterns - Custom handling for
+  specific dialog scenarios
+</Note>
+
+## Technical Implementation
+
+When the AI agent encounters dialogs during test execution:
+
+- **Alert dialogs** are automatically detected, captured, and accepted
+- **Dialog text** is included in the test action results and visible in test traces
+- **Other dialog types** (confirm, prompt, beforeunload) can be enabled for specific projects upon request
+- **Test execution** continues seamlessly after dialog handling
+
+## Best Practices
+
+<Card title="✅ Do" icon="check">
+  - Use `alert()` **only** for debugging/development - never in production -
+  Replace all browser dialogs with custom modals in production applications -
+  Describe dialog expectations clearly in your test goals (e.g., "expect a
+  success confirmation after form submission")
+</Card>
+
+<Card title="❌ Don't" icon="x">
+  - Rely on any browser dialogs (`alert()`, `confirm()`, `prompt()`) for
+  production user interfaces - Use dialogs for complex user interactions -
+  Expect dialogs to work consistently across all devices and browsers
+</Card>
+
+---
+
+Need help with dialog handling in your tests? [Contact our support team](mailto:hi@qa.tech) for assistance.

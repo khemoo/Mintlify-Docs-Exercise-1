@@ -1,0 +1,145 @@
+---
+title: Creating Tests
+icon: plus
+---
+
+## What should be a test?
+
+A good example of a test is something a user would like to do, or achieve. A user story or user journey should probably map 1:1 to a test case.
+
+#### Test examples
+
+- Log in with correct credentials
+- Log in with incorrect credentials
+- Create a new task
+- Edit a task's due date
+
+## Creating a test
+
+Creating a new test in QA.tech is very simple.
+You can create a test in the platform by following a few simple steps.
+
+1. **Click the "Add Test Case" button**
+
+At the top of the page you will find a button to create a new test.
+
+<img
+  width="400px"
+  src="/images/add-test-case-button.png"
+  alt="Add Test Case Button"
+/>
+
+2. **Choose a Suggested Test or Create your own.**
+
+Our agents are continuously scanning your site for things to test. Things it finds will pop up as suggestions here in the suggested tests list. You can either choose one or many of the suggestions or create your own using a freetext description.
+
+    __Suggested tests__ - Select a suggested test from the list and click continue
+    <img width="500px" src="/images/suggested-tests.png" alt="Suggested tests modal" />
+
+    If you want to discover more test suggestions, you can click "Analyze my site" to initiate a new site crawl.
+    This process takes up to 15 minutes and will scan your site to detect additional testable features and interactions.
+
+    __Create your own test__ - Fill in the details for your test
+    <img width="500px" src="/images/create-tests-modal.png" alt="Create your own test modal" />
+
+    - **Name**: Give your test a descriptive name (e.g., "Create a new user with admin permissions")
+    - **Goal**: Describe what the test should accomplish (e.g., "Create an admin user and sign in with the new user")
+    - **Expected Result** (optional): Define what success looks like (e.g., "A new admin user appears on the users page")
+    - **Run after**: Choose which test this should run after, if any
+    - **Configurations**: Add any required configuration values needed for the test
+    - **Advanced**: Additional settings including agent selection (defaults to Latest)
+
+    Make sure the test name is clear and concise, and that the goal provides enough detail for the agent to understand what needs to be tested.
+
+1. **Review the generated test**
+
+Once the new test is generated and starts to create a draft of the steps you are able to review the test.
+
+To review the test, click the review button next to your new test.
+
+<img
+  width="500px"
+  src="/images/review-test-button.png"
+  alt="Review generated test"
+/>
+
+This will take you to the edit test page.
+
+<img width="700px" src="/images/edit-test-page.png" alt="Edit test page" />
+
+At this stage the agent will attempt to achieve the objective on its own and generate steps for you.
+Once finished you will have a set of steps to get started.
+
+**The sidebar to the left** shows you the generated goal, expected result and suggested steps. In the Settings tab you have the possibillity to change dependencies, add configs the test needs or change advanced options for the agent.
+
+**To the right you have the trace** of the attempted execution. Inspect that the agent correctly achieved what you want to test.
+
+If you want to change any of the steps you can update them and click **"Save & Run"** to see a new attempt with the updated steps.
+
+It is always possible to stop the agent by clicking the **"Stop"** button.
+
+4. **Activate the test**
+
+Once you have a test case to your liking click on the **"Activate"** button in the top right corner. This will enable the test and make it part of your test suite.
+
+5. **Move the test to a Scenario group**
+
+Back on the "Test cases" page you can drag and drop the test to a Scenario group of your choosing. Grouping tests in Scenarios is a good way to keep your tests organized and helps get a good overview during execution.
+
+## How to format your test
+
+### Writing a good goal
+
+The goal is the main objective of the test case. The agent will use this both to build the steps and to solve the task if things change in the steps. Focus on describing what the agent should do during the test, rather than what it should validate (use expected result for that).
+
+#### Good goal examples
+
+- Search for 'Chair', navigate to a product and add it to the cart
+- Invite a new member of the role Admin to the project
+- Open the customer support chat and write a message
+
+Keep your goals:
+
+- Action-oriented: Start with verbs like "Create", "Search", "Navigate", "Add"
+- Specific: Include the exact details needed (e.g., product name, user role)
+- Focused: Describe the actions to take, not the validation criteria
+
+### Writing a good expected result
+
+The expected result defines what should be verified at the end of the test. It should clearly describe what the agent should see or experience when the test is completed successfully.
+
+#### Good expected result examples
+
+- The page should contain a user avatar
+- A success message should be displayed and the user should be redirected to the product list
+- The user should have received an email with a link to reset their password
+
+Keep your expected results:
+
+- Observable: Focus on things that can be verified visually or through system responses
+- Specific: Include exact elements, messages, or states to check for
+- Outcome-focused: Describe the end state, not the steps to get there
+
+Try to keep your test to 10 steps or less. If your test requires more steps consider creating a new test with a chained dependency instead. Tests with too many steps have the downside of taking longer to execute, and being harder to maintain. Dependencies works like if you were to refresh your browser so data in inputs will be lost.
+
+### Understanding Test Dependencies and State
+
+When working with test dependencies, it's important to understand that each test runs in isolation, similar to opening a fresh browser. This means that any state from previous tests (like login sessions, form data, or browser storage) is not automatically carried over.
+
+To maintain state between dependent tests, make sure to persist necessary data in:
+
+- Local Storage
+- Cookies
+- Database records
+- Any other permanent storage mechanism
+
+For example, if you have a test that depends on a logged-in user:
+
+1. The first test should save the login credentials or session token in a persistent storage
+2. The dependent test should retrieve and use this stored data to restore the required state
+
+This approach ensures that your test dependencies work reliably across different test runs and environments.
+
+## Using the Chat Agent for Test Generation
+
+Generate tests directly with QA.tech's chat agent through natural conversation. The agent can access your existing test cases, configs, and scenarios. It can also search through information that we store from your web application and your knowledge base, where you can add important information and crawl documentation pages.

@@ -1,0 +1,75 @@
+---
+title: Configs
+description: Manage reusable data across your tests
+icon: 'gear'
+---
+
+<img width="700px" src="/images/configs.png" alt="Configs screenshot" />
+
+## What are Configs?
+
+Configs are reusable pieces of data that can be accessed across multiple tests. They're commonly used for:
+
+- Login credentials
+- Email addresses
+- File uploads
+
+### Adding a New Config
+
+1. Navigate to Settings » Configs
+2. Click "Add config"
+3. Select a template
+4. Fill in required fields
+5. Save your configuration
+
+### Using Configs in Tests
+
+Configs can be referenced in your test cases under the Settings » Configs section. When creating or editing a test, you can select which configs the test should use.
+
+### System-Provided Configs
+
+QA.tech automatically provides several configs for common testing needs:
+
+1. **Single-use Test Email Address**
+
+   - Generates a unique email for each test session
+   - Perfect for email verification flows
+   - Includes access to email inbox
+
+2. **Magic Link Login Email**
+
+   - Format: `magic-login-xxxxx@qatech.email`
+   - Dedicated for magic link authentication flows
+   - Includes inbox monitoring
+
+3. **Project Email Address**
+   - Format: `prj-xxxxx@qatech.email`
+   - Project-specific email address
+   - Permanent address for your project
+
+### Creating Custom Configs
+
+1. **Username + Password Credentials**
+
+   - For standard authentication
+   - Fields: Username (can be email) and password
+
+2. **Username + Password with 2FA**
+
+   - For two-factor authentication flows
+   - Includes 2FA setup (Google Authenticator/Authy)
+
+3. **Valid Email + Password Login**
+
+   - Includes generated unique email
+   - Password management
+   - Email inbox access
+
+4. **File Upload**
+   - Upload static files for testing
+   - Maximum size: 250MB
+   - Supports common file formats
+
+## Custom Config Types
+
+Need a custom configuration type (CSV files, specific data formats, etc.)? Contact our support team for assistance in setting up specialized configs for your needs.

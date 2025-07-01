@@ -1,0 +1,33 @@
+---
+title: Issues
+description: Issues are things we take note of while running your tests. It collects bugs, improvements and things you might want to look over in your application.
+icon: 'bug'
+---
+
+## What types of issues does QA.tech detect?
+
+We are continusly improving our issue detection. Some examples of issues we detect are:
+
+**UX issues**
+If we can't complete a task due to the UI or UX being non-functional, we mark it as a UX issue. This reflects an issue you most likely need to investigate to improve the user experience of your product.
+
+**Network issues**
+We keep track of all the failed network requests that occurred during the test execution. This could reflect rate limit errors or environment/API configuration issues.
+
+**Accessibility issues**
+We automatically run the [axe](https://github.com/dequelabs/axe-core) suite of accessibility checks on every page we visit.
+
+**Console errors**
+Console errors are usually filed as low-severity issues.
+
+Because we interact with your product as a user, through a browser, we do not detect issues and exceptions happening server-side. For this, we recommend using a monitoring tool such as BugSnag or Sentry.
+
+## Issue Statuses
+
+You can mark issues as resolved or choose to ignore them to not be notified again.
+
+Ignored issues do not count towards your statistics and insights.
+
+## Export Issues
+
+Issues can easily be exported to your ticket system of choice. Connect it under the Configuration tab.

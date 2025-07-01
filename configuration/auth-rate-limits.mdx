@@ -1,0 +1,55 @@
+---
+title: 'Authentication Rate Limits'
+description: 'Configure authentication rate limits to prevent issues during parallel testing'
+icon: 'shield-check'
+---
+
+When running multiple tests in parallel, authentication rate limits from various providers can be triggered, causing user sessions to be logged out in the middle of tests. This guide covers how to configure rate limits for different authentication providers.
+
+## Overview
+
+Authentication providers implement rate limiting to prevent abuse and ensure service stability. During testing, these limits can impact:
+
+- Parallel test execution
+- Authentication flows in tests
+- Session management during long-running tests
+- User signup/verification processes
+
+## Supabase Rate Limits
+
+Supabase provides comprehensive rate limiting controls that are particularly important when running parallel tests against free or limited tier instances.
+
+### Accessing Supabase Rate Limits
+
+1. Navigate to your Supabase project dashboard
+2. Go to **Authentication** → **Rate Limits** in the sidebar
+3. Configure the various rate limit settings
+
+### Rate Limit Settings
+
+#### Email Rate Limits
+
+- **Purpose**: Controls how many emails can be sent per hour
+- **Default**: 500 emails per hour
+- **Testing Impact**: Affects signup/verification flows in tests
+- **Recommendation**: Increase if tests involve many user registrations
+
+#### Token Refresh Rate Limits
+
+- **Purpose**: Controls session refreshes in 5-minute intervals per IP
+- **Default**: 300 refreshes per 5 minutes (3600 requests per hour)
+- **Testing Impact**: **High impact** - Can cause session logouts during long-running tests
+- **Recommendation**: Increase significantly for parallel testing (e.g., 1000-5000)
+
+### Supabase-Specific Notes
+
+- Rate limit changes take effect immediately
+- Some limits are per IP address, others are per project
+- Free tier projects have lower default limits than paid plans
+- Consider upgrading to a paid plan for higher default limits
+
+<Warning>
+  Be cautious when significantly increasing rate limits in production
+  environments. Higher limits reduce protection against actual abuse and DDoS
+  attacks.
+</Warning>

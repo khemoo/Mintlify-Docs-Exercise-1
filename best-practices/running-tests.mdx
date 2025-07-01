@@ -1,0 +1,29 @@
+---
+title: Running Tests
+icon: play
+---
+
+Tests in QA.tech can be run in several ways.
+
+## Trigger a Run from the UI
+
+The simplest way to get started is to use the "Run Tests" button found on the [Dashboard](https://app.qa.tech/dashboard/current-project) or the [Test Cases](https://app.qa.tech/dashboard/current-project/scenarios) page.
+
+You can also run individual tests by navigating to the test and clicking **Run Test**.
+
+## Trigger a Run as Part of a Pipeline
+
+You can also integrate test runs as part of your **CI pipeline**.
+
+You can use any system that supports sending an HTTPS POST request when you want to trigger the tests.
+
+For a great example, check out our [GitHub Actions documentation](/configuration/github).
+
+## Trigger a Run on a Schedule
+
+If you want your tests to run at a specific time, such as on a recurring weekly schedule (cron-style), we offer that functionality as well.
+
+1. Go to [Results](https://app.qa.tech/dashboard/current-project/results) and press the **Schedule** button.
+2. Follow the instructions provided to set up the schedule.
+
+If you're unsure how to write the cron format, you can use a tool like [crontab.guru](https://crontab.guru/) or reach out to us, and we'll be happy to help you get set up.

@@ -1,0 +1,80 @@
+---
+title: Email Inbox
+description: Access and manage test emails during automated testing
+icon: 'envelope'
+---
+
+<img width="700px" src="/images/email-inbox-test.png" alt="Email Inbox" />
+
+During test execution, the AI agent has access to an email inbox that can receive and process emails. This is useful for testing features like:
+
+- Account verification
+- Password reset flows
+- Email notifications
+- Newsletter subscriptions
+
+The AI agent can:
+
+- Open the email inbox
+- Wait for new emails
+- Read email content
+- Extract One-Time Passwords (OTP)
+- Click links in emails
+
+The agent will poll for new emails for up to 3 minutes before timing out.
+
+## Email Configs
+
+QA.tech provides these system email configurations by default:
+
+- **Single use Test Email Address** - New generated email for each test (can be re-used by having another test depend on the first)
+- **Project e-mail address** - Static email always accessible for the project
+
+**To use custom email addresses for testing:**
+
+1. Navigate to Settings » Configs
+2. Select "Email Inbox" type
+3. Configure the email settings
+4. Save the configuration
+5. Add the config to your test case settings
+
+<img
+  width="450px"
+  src="/images/email-inbox-config.png"
+  alt="Email Inbox Config"
+/>
+
+## Using Email Inbox in Tests
+
+1. Create or edit a test case
+2. Under the Settings tab, select the email config to use
+3. The test will now have access to the email inbox
+   <img
+     width="250px"
+     src="/images/email-inbox-test-edit.png"
+     alt="Email Inbox Test Edit"
+   />
+
+## Manual Access
+
+You can view test emails manually:
+
+1. Go to Settings
+2. Select Email Inbox
+3. View all received test emails
+
+<img
+  width="700px"
+  src="/images/email-inbox-settings.png"
+  alt="Email Inbox Settings"
+/>
+
+## Important Considerations
+
+- **Shared Inboxes**: If multiple tests use the same email inbox simultaneously (e.g., two password reset tests), emails may get mixed up. Use separate email configs for concurrent tests.
+
+- **Email Inheritance**: Tests can access emails through:
+  - Direct config assignment
+  - Dependencies on other tests that use email configs
+- **Timeout**: The agent will wait up to 3 minutes for expected emails before failing
+- **Invitation Links** Since the browser state will be kept when opening the email you should log out after inviting a user to avoid that the invitation link redirects to the inviters account.

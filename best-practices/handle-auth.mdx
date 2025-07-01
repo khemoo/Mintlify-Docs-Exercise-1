@@ -1,0 +1,42 @@
+---
+title: Auth
+icon: key
+---
+
+# Authentication Support for QA.tech
+
+QA.tech supports most common authentication setups. If your preferred authentication method isn’t listed below, let us know, and we’ll consider adding it to our roadmap.
+
+## Supported Authentication Methods
+
+- Username and password
+- Email and password
+- OTP (One-Time Password) via email
+- Two-Factor Authentication (2FA) with authenticator codes
+
+## Unsupported Authentication Methods
+
+### BankID
+
+Unfortunately, BankID does not offer straightforward methods for testing authentication logic in a controlled environment. This limitation often requires implementing custom exceptions or workarounds to enable effective testing.
+
+One approach is to adjust the BankID sign-in flow in your testing environment. For example:
+
+```
+// When displaying the BankID sign-in form
+if (process.env.IS_TESTING === '1') {
+  // Show a form where the user can manually enter their personal number
+  renderTestSignInForm();
+}
+```
+
+```
+// When handling the form submission
+if (process.env.IS_TESTING === '1') {
+  // Do not send the request to BankID
+  // Instead, return a mocked successful response
+  return { status: 'success', userId: 'mock-user-id' };
+}
+```
+
+This setup allows you to simulate the BankID login process during tests by bypassing the actual authentication request while maintaining realistic interaction with the UI.

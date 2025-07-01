@@ -1,0 +1,151 @@
+---
+title: 'Device Presets'
+description: 'Configure browser sessions with predefined device settings'
+icon: 'browser'
+---
+
+# Device Presets
+
+Device presets allow you to configure browser sessions with predefined device settings, making it easy to test your application across different device configurations. When using device presets, you can simulate specific devices with their viewport sizes, user agents, and other device-specific settings.
+
+## Overview
+
+Device presets provide a way to:
+
+- Test your application on different devices and screen sizes
+- Ensure consistent device settings across test runs
+- Simulate real device characteristics accurately
+- Manage device configurations centrally
+
+## Available Settings
+
+Device presets include the following settings:
+
+- **Device Type**: Choose between Desktop, Tablet, or Mobile configurations
+- **Resolution**: Each device type comes with predefined viewport sizes
+- **Locale**: Set the browser's language and region settings (e.g., en-US, sv-SE)
+- **Timezone**: Configure the device's timezone (e.g., Europe/Stockholm)
+- **Custom Headers**: Add custom HTTP headers for special testing requirements
+
+## Managing Device Presets
+
+### Creating a Preset
+
+<Steps>
+  <Step title="Navigate to Device Presets">
+    Go to [**Settings → Device
+    Presets**](https://app.qa.tech/dashboard/current-project/settings/device-presets)
+  </Step>
+  <Step title="Create New Preset">Click the "Create Device Preset" button</Step>
+  <Step title="Configure Settings">
+    Fill in the required settings: - Name your preset - Select a device type
+    (Desktop/Tablet/Mobile) - Configure locale and timezone - Optionally
+    override the default resolution - Optionally override the default user agent
+  </Step>
+  <Step title="Add Custom Headers (Optional)">
+    If needed, add custom HTTP headers: - Click "Custom Headers" - Select a
+    header name or type your own - Enter the header value - Click the plus icon
+    to add more
+  </Step>
+  <Step title="Set as Default (Optional)">
+    Toggle "Set as default preset" if you want this to be the project default
+  </Step>
+  <Step title="Save">Click "Create" to save your preset</Step>
+</Steps>
+
+### Resolution Settings
+
+Each device type comes with a default resolution:
+
+- **Desktop**: 1280×800 (recommended)
+- **Tablet**: 768×1024
+- **Mobile**: 375×667
+
+You can override these defaults using the resolution toggle in the preset configuration.
+
+> **Note**: Using resolutions larger than 1280×800 may result in slower test execution. Our testing model is optimized for the default desktop resolution (1280×800) to provide the best balance of coverage and performance.
+
+### User Agent
+
+Each device type comes with an appropriate default user agent. You can override this using the user agent toggle if needed for specific testing scenarios.
+
+### Custom Headers
+
+You can add custom HTTP headers to be sent with requests from this device:
+
+1. Click "Custom Headers"
+2. Select a header name from common options or type your own
+3. Enter the header value
+4. Click the plus icon to add more headers
+
+### Default Presets
+
+Each project can have one default device preset. When set, this preset will be used for all tests unless overridden by:
+
+1. Test case setting
+2. Test plan setting
+
+## Priority Order
+
+Device preset selection follows this priority order:
+
+1. Test case setting (highest priority)
+2. Test plan setting (see [Test Plans](/core-concepts/test-plans))
+3. Project default preset
+4. QA Tech default preset (fallback)
+
+## Integration with Test Plans
+
+Device presets can be configured at the test plan level, allowing you to run the same test cases with different device configurations. This is particularly useful for:
+
+- Testing responsive design across multiple devices
+- Verifying functionality on specific device types
+- Running the same test plan with different locale/timezone settings
+
+When a test plan has a device preset configured, it takes precedence over project defaults but can still be overridden by individual test case settings. Learn more about test execution and configuration in our [Test Plans documentation](/core-concepts/test-plans).
+
+### Setting Device Presets in Test Plans
+
+<Steps>
+  <Step title="Open Test Plan Settings">
+    Navigate to your test plan and click "Settings"
+  </Step>
+  <Step title="Select Device Preset">
+    Choose a device preset from the dropdown menu
+  </Step>
+  <Step title="Save Changes">
+    Click "Save" to apply the device preset to your test plan
+  </Step>
+</Steps>
+
+All test runs initiated from this test plan will now use the selected device preset unless overridden by test case settings.
+
+## Best Practices
+
+1. **Use Project Defaults**: Set a default device preset at the project level for consistent testing
+2. **Match Target Devices**: Choose presets that match your target audience's devices
+3. **Test Responsiveness**: Create presets for different device types to verify responsive design
+4. **Document Custom Presets**: Add clear names and descriptions to custom presets
+5. **Keep it Simple**: Use the default resolution and user agent unless you have specific requirements
+
+## Restrictions
+
+- Maximum viewport size: 1280x1024
+- Device presets must use one of the three device types (Desktop/Tablet/Mobile)
+- Each project can have only one default preset
+
+## Troubleshooting
+
+If you encounter issues with device presets:
+
+1. **Preset Not Applied**: Check the priority order to understand which preset is being used
+2. **Resolution Issues**: Make sure the override toggle is enabled if you want to use custom resolutions
+3. **Custom Headers**: Verify header names and values are properly formatted
+4. **Default Not Working**: Confirm only one preset is set as default in the project
+
+## Technical Notes
+
+- Device presets are stored as snapshots in test runs for reproducibility
+- Default configurations are optimized for common testing scenarios
+- Custom headers are preserved across test runs
+- Locale and timezone settings affect date/time handling in tests

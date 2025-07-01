@@ -1,0 +1,45 @@
+---
+title: File Uploads
+description: Testing file uploads with default and custom files
+icon: 'file-arrow-up'
+---
+
+## Default Test Files
+
+QA.tech provides two default test files that are available for all tests:
+
+- **test.pdf** - A simple PDF document for testing PDF uploads
+- **test.jpg** - A standard image file for testing image uploads
+
+These files are automatically available to the AI agent during test execution.
+
+## Custom File Uploads
+
+For testing specific file import features or custom file requirements, you can create file upload configs:
+
+1. Navigate to Settings » Configs
+2. Select "File Upload" type
+3. Upload your test file (max 250MB)
+4. Save the configuration
+5. Edit the test case, add the config under "Settings"
+
+### File Selector
+
+Using javascript we catch the event that triggers a file selector and renders a custom file selector. This allows us to upload files from configs.
+
+<img
+  width="400px"
+  src="/images/file-upload-selector.png"
+  alt="File Upload Selector in Agent"
+/>
+
+### Drag and Drop
+
+The agent currently does not support drag-and-drop file uploads. You can still test by clicking the drag and drop area to trigger the file selector.
+
+### File Type Restrictions
+
+When your application has input restrictions (e.g., only accepting .csv files), our AI agent will automatically:
+
+- Detect the allowed file types from the input element
+- Only use files that match the allowed extensions

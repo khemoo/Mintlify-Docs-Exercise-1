@@ -1,0 +1,123 @@
+---
+title: 'Applications and Environments'
+description: 'Learn how QA.tech organizes your testing infrastructure with Applications and Environments'
+icon: 'app-window'
+---
+
+# Applications and Environments
+
+QA.tech uses a hierarchical structure of **applications** and **environments** to organize your testing infrastructure and provide context-aware test execution.
+
+A single project may have one or more _applications_.
+
+## Applications
+
+An **application** represents a single app that you want to test. It serves as a container for relevant test cases and environments. Each application has at least one _environment_, which contains properties (e.g., the URL) used by test cases within the application.
+
+### Creating Applications
+
+<Steps>
+  <Step title="Navigate to applications settings">
+    Go to [**Settings →
+    Applications**](https://app.qa.tech/dashboard/current-project/settings/applications)
+    in your project dashboard.
+  </Step>
+  <Step title="Create new application">
+    Click the "Add Application" button and fill in the required details
+    including name, color, icon, and default environment information.
+  </Step>
+  <Step title="Save application">
+    Click "Create Application" to save your application with its associated
+    environment.
+  </Step>
+</Steps>
+
+## Environments
+
+**Environments** represent different configurations of your application where tests can be executed. A single environment may contain various properties (like the website URL to test) which will be used by the agent when executing a test case. For example, you may have different environments for different language versions of your app.
+
+### Creating Environments
+
+<Steps>
+  <Step title="Access Environment Settings">
+    Navigate to [**Settings →
+    Environments**](https://app.qa.tech/dashboard/current-project/settings/environments)
+    in your project.
+  </Step>
+  <Step title="Create new environment">
+    Click "Add Environment" and fill in the environment details.
+  </Step>
+  <Step title="Select application">
+    Choose which application this environment belongs to.
+  </Step>
+  <Step title="Configure environment">
+    Fill in the rest of the environment details as prompted in the form.
+  </Step>
+</Steps>
+
+## Example Structure
+
+```
+Project
+├── Frontend
+│   ├── Environment A (Development)
+│   ├── Environment B (Staging)
+│   └── Environment C (Production)
+├── Admin app
+│   ├── Environment D (Test)
+│   └── Environment E (Production)
+└── API
+    └── Environment F (Development)
+```
+
+## Environment Selection
+
+When creating a new test, you must assign it to an existing application. Executing a single test will use that application's _default_ environment by default, unless specified otherwise in the session overrides.
+
+You can run tests in different environment configurations by adding them to a _test plan_ and selecting target environments in the test plan settings.
+
+## API Integration
+
+You can create environments programmatically using the QA.tech API:
+
+```bash
+curl -X POST \
+  'https://app.qa.tech/api/projects/{projectId}/applications/{applicationId}/environments' \
+  -H 'Authorization: Bearer {apiToken}' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "name": "New Environment",
+    "url": "https://new-env.example.com"
+  }'
+```
+
+## Best Practices
+
+### Application Organization
+
+- Create separate applications for different systems or services
+- Use descriptive names that reflect the application's purpose
+- Group related functionality under the same application
+
+### Environment Management
+
+- Maintain consistent naming conventions across environments
+- Use clear, descriptive URLs for each environment
+- Keep environment URLs up to date as deployments change
+
+## Use Cases
+
+### Multi-Service Products
+
+For products with multiple services (e.g., user frontend, admin site, etc), you can:
+
+- Create separate applications for each service
+- Test service interactions across different environments
+
+### Feature Branch Testing
+
+- Create _preview_ environments for feature branches
+- Test new features in isolated environments
+- Clean up preview environments after feature completion
+
+This hierarchical structure helps you organize your testing infrastructure efficiently while maintaining clear separation between different applications and their configurations.

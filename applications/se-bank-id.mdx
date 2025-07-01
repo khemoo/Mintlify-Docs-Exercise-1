@@ -1,0 +1,46 @@
+---
+title: BankID
+icon: 'key'
+---
+
+## What is BankID
+
+BankID is a digital identification system widely used in countries like Sweden, Norway, and Finland. It allows individuals to securely prove their identity online and authorize electronic transactions.
+
+## How to test BankID
+
+You need to stub or circumvent BankID in your testing environment to use QA.tech.
+
+From BankID's official documentation:
+
+> **How do I test my BankID implementation? How about automation?**
+>
+> Testing can't be automated. Passwords/Security codes have to be manually entered in the BankID clients. We recommend building a so-called test stub that simulates the BankID service web service. It can also be used to perform load tests on your services.
+> https://developers.bankid.com/support
+
+## What is stubbing?
+
+Stubbing is the process of replacing a component (like BankID integration) with a placeholder used within a testing environment. This has to be done by your development team.
+
+In the case of BankID it can be that you ask the user to provide a specific personal identity number, like 199001011234, and always grant that user access. Note that this should only be permitted in a _testing_ environment, never in production.
+
+On the client:
+
+```
+if (environment === 'testing') {
+  // Show stub UI for BankID
+} else {
+  // Show real BankID
+}
+```
+
+and on the server:
+
+```
+if (environment === 'testing') {
+  if (personalNumber === '199001011234') // Send a auth success response
+  else // send a auth failed response
+} else {
+  // Auth using real BankID
+}
+```

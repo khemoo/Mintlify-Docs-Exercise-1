@@ -1,0 +1,33 @@
+---
+title: File Downloads
+description: Testing to export and download files
+icon: 'file-arrow-down'
+---
+
+## Testing File Downloads
+
+QA.tech's agent can test file download functionality in your web applications. When a file download is triggered during a test, the agent will:
+
+1. Detect the download event
+2. Wait for the download to complete
+3. Verify the file was downloaded successfully
+4. Show a success message with the file details
+
+<img
+  width="400px"
+  src="/images/file-download-modal.png"
+  alt="File Download Modal"
+/>
+
+To test file downloads just write the test like you normally would and the agent will handle the rest.
+For example _Click the export button_ will automatically download the file and verify it was downloaded successfully.
+
+### Download Limitations
+
+- The agent will wait up to 30 seconds for a download to complete
+- The agent will download files up to 100MB in size
+- Some specialized download types (like streaming media) are not supported
+- Downloaded files are just temporary and you can not upload the file again
+- To test that a downloaded file follows a format please contact us and we can help
+- Files can not be downloaded from emails
+  Contact us if you have questions or need to test this functionality

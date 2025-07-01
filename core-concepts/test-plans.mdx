@@ -1,0 +1,83 @@
+---
+title: Test plans
+description: Test Plans allow you to organize and manage groups of test cases that can be executed together as a single unit.
+icon: 'clipboard-list'
+---
+
+## Overview
+
+Test Plans are collections of test cases that you want to run together regularly. This feature provides flexibility in running tests through multiple methods: API triggers, scheduled runs, or manual execution through the UI.
+
+Test plans help streamline your testing process by:
+
+- Organizing related test cases into logical groups
+- Enabling automated execution on schedules
+- Supporting API-driven test automation
+- Managing test dependencies efficiently
+
+## Creating a Test Plan
+
+1. Navigate to the Test Plans section
+2. Click the "Create Test Plan" button in the top right
+3. Provide the following information:
+   - Name: A clear, descriptive name for your test plan
+   - Description (optional): Additional context about the test plan's purpose
+4. Click "Save" to create your test plan
+
+## Adding Test Cases to a Test Plan
+
+When adding test cases to a test plan, keep in mind:
+
+- Dependencies will be automatically included in runs, even if not visible in the UI
+- Consider creating separate plans for:
+  - Frequently run core tests
+  - Less frequent tests that run on a schedule
+
+## Execution Methods
+
+### Github Actions Integration
+
+You can automate test execution by integrating Test Plans with your GitHub workflows. This integration allows you to:
+
+Trigger tests automatically after deployments
+Run tests on pull requests
+Execute tests on any GitHub event
+
+Read more how to setup [Github Actions](/configuration/github).
+
+### API Execution
+
+Test Plans can be triggered programmatically through the API. For detailed information about available endpoints and parameters, refer to the [API reference documentation](/api-reference/start-the-tests).
+
+### Scheduled Execution
+
+You can configure Test Plans to run automatically at specific times or intervals:
+
+1. Navigate to the Results page
+2. Click the "Schedule" button
+3. Configure cron for the schedule and select Test plan
+
+### UI Execution
+
+To run a Test Plan manually:
+
+1. Navigate to the Test Plans section
+2. Locate your Test Plan
+3. Click the "Run Tests" button
+
+## Best Practices
+
+1. **Optimize Test Organization**:
+
+   - Group related test cases together
+   - Create separate plans for different testing frequencies
+   - Keep plans focused and maintainable
+
+2. **Dependency Management**:
+
+   - Be aware that dependent test cases will be included automatically
+   - Review dependencies when setting up new test plans
+
+3. **Schedule and Workflow Optimization**:
+   - Schedule less frequent tests during off-peak hours
+   - Configure GitHub workflows to run tests at key points in your development process (deployments, PRs, merges)

@@ -1,0 +1,46 @@
+---
+title: 'Limits'
+description: 'Understanding log limits and how they affect your tests'
+icon: road-barrier
+---
+
+# Limits
+
+QA.tech implements rate limits to ensure system stability and optimal performance during test execution. These limits prevent excessive resource consumption and ensure consistent test behavior.
+
+## Default Limits
+
+Each test execution has the following limits per default:
+
+| Type                 | Default Limit | Description                                                 |
+| -------------------- | ------------- | ----------------------------------------------------------- |
+| Console logs         | 100           | Maximum number of console log entries captured per session  |
+| Network requests     | 1000          | Maximum number of network requests captured per session     |
+| Accessibility issues | 10            | Maximum number of accessibility issues captured per session |
+
+## What Happens When a Limit is Reached
+
+When a limit is reached:
+
+1. A warning message is logged indicating the limit has been reached
+2. Further events of that type are not captured or stored
+3. Test execution continues normally without additional event collection of the limited type
+
+For example, if your application generates 150 console logs, only the first 100 will be captured and displayed in the test results.
+
+## Customizing Limits
+
+If your testing needs require higher limits, we can increase these on request. Contact our support team to discuss your requirements.
+
+<Note>
+  Increasing rate limits may impact test performance and result in larger test
+  reports. We'll work with you to find the optimal balance for your specific
+  needs.
+</Note>
+
+## Best Practices
+
+To work effectively with rate limits:
+
+1. **Filter unnecessary logging**: Reduce verbose console logging in test environments
+2. **Split complex tests**: Break tests with many interactions into smaller, focused test cases
