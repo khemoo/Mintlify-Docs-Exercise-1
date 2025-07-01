@@ -1,0 +1,143 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Guide: Adding and Editing Pages in QA.tech Docs (Mintlify)
+
+This document outlines the process for adding new documentation pages and editing existing ones within the QA.tech documentation repository. The documentation utilizes the **Mintlify** framework and **MDX** for content.
+
+**Target Audience:** QA.tech customers
+
+
+## Core Files & Concepts
+
+*   **`apps/docs/` directory** Contains all the documentation content files (`.mdx`). Subdirectories within `docs/` (e.g., `core-concepts/`, `best-practices/`) organize the content.
+*   **`.mdx` files:** Individual documentation pages written in MDX format. They start with YAML frontmatter.
+*   **`docs.json` (root):** The main Mintlify configuration file. It defines the **navigation structure** (sidebar), global styling, integrations, and other core settings for the documentation site.
+
+## Task: Editing an Existing Page
+
+1.  **Identify the File:** Locate the `.mdx` file corresponding to the page requiring edits. The file path often mirrors the URL structure (e.g., the page `docs.qa.tech/core-concepts/overview` might correspond to `docs/core-concepts/overview.mdx`). Check the `navigation` section in `docs.json` to confirm the file path if needed.
+2.  **Modify Content:** Access the identified `.mdx` file and make the necessary changes to the text, code examples, or components using MDX syntax.
+3.  **Save Changes:** Ensure the modified file is saved.
+
+## Task: Adding a New Page
+
+1.  **Determine Location:** Decide the logical placement for the new page within the existing documentation structure. Identify the appropriate subdirectory within the main content folder (e.g., `docs/best-practices/`, `docs/integrations/`). Create a new subdirectory if necessary.
+2.  **Create MDX File:** Generate a new file with the `.mdx` extension in the chosen directory. Use a descriptive, URL-friendly filename (e.g., `docs/integrations/new-service.mdx`).
+3.  **Add Frontmatter:** Initialize the file with YAML frontmatter (`---`) to define essential metadata. A `title` is required. A `description` is recommended for clarity and SEO.
+    ```mdx
+    ---
+    title: "Integrating with New Service"
+    description: "Step-by-step guide for setting up the New Service integration."
+    icon: "puzzle-piece" # Optional: See Icons section below
+    ---
+
+    # Integrating with New Service
+
+    Start page content here using MDX...
+    ```
+4.  **Write Content:** Populate the file with the documentation content using MDX syntax (text, headings, lists, code blocks, Mintlify components like `<Note>`, `<Card>`, `<Steps>`, etc.).
+5.  **Update Navigation (`docs.json`):** This step is **essential** for the new page to be visible in the site's sidebar navigation.
+    *   Access the `docs.json` file located at the root of the repository.
+    *   Navigate to the `navigation` array within the JSON structure.
+    *   Find the specific `group` (or `anchor`, `tab`, etc.) where the new page should appear.
+    *   Append the **relative path** to the newly created `.mdx` file (***excluding*** the `.mdx` extension) into that group's `pages` array.
+
+    **Example `docs.json` Snippet Modification:**
+    ```json
+    {
+      // ... other config ...
+      "navigation": [
+        // ... other groups ...
+        {
+          "group": "Integrations", // Target group found
+          "pages": [
+            "integrations/trello",
+            "integrations/linear",
+            "integrations/jira",
+            "integrations/status-badges",
+            "integrations/new-service" // <-- New page path added
+          ]
+        },
+        // ... other groups ...
+      ]
+      // ... other config ...
+    }
+    ```
+6.  **Save Changes:** Ensure both the new `.mdx` file and the modified `docs.json` are saved.
+
+## Step guides
+
+Write steps like this, when its something the user has to do
+
+<Steps>
+  <Step title="Enable Status Badge">
+    Navigate to [**Settings →
+    Integrations**](https://app.qa.tech/dashboard/current-project/settings/integrations?focus=status-badge).
+    Find the **Status Badge** section and toggle it to enable.
+  </Step>
+  <Step title="Configure Badge Options">
+    Select which test plan to track with your badge and customize the appearance
+    options as needed.
+  </Step>
+  <Step title="Copy Badge Code">
+    Copy the generated Markdown, HTML, or URL code to embed the badge in your
+    README, documentation, or website.
+  </Step>
+</Steps>
+
+## Links to qa.tech application
+
+we have a special that replaces projectId with current-project, like this
+
+https://app.qa.tech/dashboard/current-project/settings/integrations?focus=status-badge
+
+to link the user into our app from docs, keeping their previously selected project.
+
+## Using Icons
+
+Icons enhance visual navigation and draw attention to specific sections or pages. Mintlify primarily uses icons from two libraries:
+
+1.  **@Font Awesome** (Free set)
+2.  **@Lucide**
+
+Icons are typically specified using their string names (e.g., `"book-open"`, `"square-terminal"`, `"puzzle-piece"`).
+
+**Where to Use Icons:**
+
+*   **Navigation (`docs.json`):** Add an `icon` property to `group`, `anchor`, or `tab` objects within the `navigation` structure to display an icon next to that item in the sidebar or top navigation.
+    ```json
+      "anchors": [
+        {
+          "name": "Documentation",
+          "icon": "book-open-cover", // <-- Icon for Anchor
+          "url": "introduction"
+        },
+        {
+          "group": "Core Concepts",
+          "icon": "brain-circuit", // <-- Icon for Group (if nested)
+          "pages": [
+            "core-concepts/overview",
+            // ...
+          ]
+        }
+      ]
+    ```
+*   **Page Frontmatter (`.mdx` files):** Add an `icon` property to a page's frontmatter to display an icon next to its entry in the sidebar.
+    ```mdx
+    ---
+    title: "Email Inbox Testing"
+    icon: "inbox" # <-- Icon for Page
+    ---
+    ```
+*   **Mintlify Components:** Some components like `<Card>`, `<Step>`, `<Accordion>`, or the global `anchors` in `docs.json` accept an `icon` prop. Refer to the specific component documentation for usage.
+    ```jsx
+    <Card title="My Card" icon="link" href="/some/path">
+      Card content...
+    </Card>
+    ```
+*   **Font Awesome Specifics:** For Font Awesome icons, you can optionally specify an `iconType` (e.g., `"solid"`, `"regular"`, `"brands"`) if you need a specific style variant, though often the default works well. This is usually set in the same place as the `icon` property.
+
+When adding or editing pages or navigation elements, consider adding relevant icons to improve user experience.
