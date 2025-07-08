@@ -1,10 +1,8 @@
 ---
-title: 'Applications and Environments'
-description: 'Learn how QA.tech organizes your testing infrastructure with Applications and Environments'
-icon: 'app-window'
+title: "Applications"
+description: "Organizes your testing infrastructure with Applications and Environments"
+icon: "grid"
 ---
-
-# Applications and Environments
 
 QA.tech uses a hierarchical structure of **applications** and **environments** to organize your testing infrastructure and provide context-aware test execution.
 
@@ -75,21 +73,6 @@ Project
 When creating a new test, you must assign it to an existing application. Executing a single test will use that application's _default_ environment by default, unless specified otherwise in the session overrides.
 
 You can run tests in different environment configurations by adding them to a _test plan_ and selecting target environments in the test plan settings.
-
-## API Integration
-
-You can create environments programmatically using the QA.tech API:
-
-```bash
-curl -X POST \
-  'https://app.qa.tech/api/projects/{projectId}/applications/{applicationId}/environments' \
-  -H 'Authorization: Bearer {apiToken}' \
-  -H 'Content-Type: application/json' \
-  -d '{
-    "name": "New Environment",
-    "url": "https://new-env.example.com"
-  }'
-```
 
 ## Best Practices
 
