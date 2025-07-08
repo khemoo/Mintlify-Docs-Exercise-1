@@ -1,0 +1,54 @@
+---
+title: "Preview Environments"
+description: "Dynamic testing environments for feature branches and pull requests"
+icon: "code-branch"
+---
+
+**Preview environments** are temporary, isolated environments created for specific feature branches or pull requests. They allow you to test changes in a production-like environment before merging code into your main branch.
+
+## What are Preview Environments?
+
+Preview environments are dynamically created environments that:
+
+- Deploy your application with the latest changes from a specific branch
+- Provide a unique URL for testing the changes
+- Are automatically cleaned up after the feature is merged or the branch is deleted
+- Enable stakeholders to review and test features before they go live
+
+## Creating Preview Environments
+
+<Steps>
+  <Step title="Navigate to Environment Settings">
+    Go to [**Settings →
+    Environments**](https://app.qa.tech/dashboard/current-project/settings/environments)
+    in your project dashboard.
+  </Step>
+  <Step title="Create Preview Environment">
+    Click "Add Environment" and select "Preview Environment" as the type.
+    Configure the environment with your preview deployment URL pattern.
+  </Step>
+  <Step title="Configure URL Pattern">
+    Set up the URL pattern to match your preview deployment system (e.g.,
+    `https://feature-branch-name.preview.yourapp.com`).
+  </Step>
+  <Step title="Set Lifecycle Rules">
+    Configure automatic cleanup rules and expiration settings for the preview
+    environment.
+  </Step>
+</Steps>
+
+## Integration with API
+
+You can trigger test runs against preview environments using the [**Start Run API**](/api-reference/start-run). The API allows you to override environment configurations per application when starting a test run.
+
+## Integration with CI/CD
+
+Use the [QA.tech GitHub Action](https://github.com/QAdottech/run-action) to automatically test preview environments. The action supports:
+
+- **Dynamic URL configuration** - Override environment URLs using `applications_config`
+- **Multiple application testing** - Test frontend, backend, and other apps simultaneously
+- **Blocking mode** - Wait for test completion before proceeding
+- **PR-based deployments** - Automatic testing on pull requests
+- **Custom deployment integrations** - Works with Vercel, Netlify, AWS, and other platforms
+
+For complete setup examples and configuration options, see the [GitHub Action documentation](https://github.com/QAdottech/run-action).
