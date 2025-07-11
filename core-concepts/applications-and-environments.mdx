@@ -1,10 +1,8 @@
 ---
-title: 'Applications and Environments'
-description: 'Learn how QA.tech organizes your testing infrastructure with Applications and Environments'
-icon: 'app-window'
+title: "Applications and Environments"
+description: "Organizes your testing infrastructure with Applications and Environments"
+icon: "grid"
 ---
-
-# Applications and Environments
 
 QA.tech uses a hierarchical structure of **applications** and **environments** to organize your testing infrastructure and provide context-aware test execution.
 
@@ -39,16 +37,16 @@ An **application** represents a single app that you want to test. It serves as a
 ### Creating Environments
 
 <Steps>
-  <Step title="Access Environment Settings">
-    Navigate to [**Settings →
-    Environments**](https://app.qa.tech/dashboard/current-project/settings/environments)
-    in your project.
+  <Step title="Navigate to applications settings">
+    Go to [**Settings →
+    Applications**](https://app.qa.tech/dashboard/current-project/settings/applications)
+    in your project dashboard.
+  </Step>
+  <Step title="Select application">
+    Select the application where you'd like to create a new environment.
   </Step>
   <Step title="Create new environment">
     Click "Add Environment" and fill in the environment details.
-  </Step>
-  <Step title="Select application">
-    Choose which application this environment belongs to.
   </Step>
   <Step title="Configure environment">
     Fill in the rest of the environment details as prompted in the form.
@@ -75,21 +73,6 @@ Project
 When creating a new test, you must assign it to an existing application. Executing a single test will use that application's _default_ environment by default, unless specified otherwise in the session overrides.
 
 You can run tests in different environment configurations by adding them to a _test plan_ and selecting target environments in the test plan settings.
-
-## API Integration
-
-You can create environments programmatically using the QA.tech API:
-
-```bash
-curl -X POST \
-  'https://app.qa.tech/api/projects/{projectId}/applications/{applicationId}/environments' \
-  -H 'Authorization: Bearer {apiToken}' \
-  -H 'Content-Type: application/json' \
-  -d '{
-    "name": "New Environment",
-    "url": "https://new-env.example.com"
-  }'
-```
 
 ## Best Practices
 
