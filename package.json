@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "mintlify dev --port 6005"
+    "start": "python3 -m http.server 3000",
+    "docs": "mintlify dev --port 6005"
   },
   "keywords": [],
   "author": "",
